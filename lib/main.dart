@@ -71,8 +71,10 @@
 
 //// <--------------------- Login form field bloc example ----------------->
 
+import 'package:bloc_app/login_form_bloc_file/login_bloc/auth_bloc.dart';
 import 'package:bloc_app/login_form_bloc_file/pallete.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'login_form_bloc_file/screens/login_screen.dart';
 
@@ -86,12 +88,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Pallete.backgroundColor,
+    return BlocProvider(
+      create: (context)=>AuthBloc(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: Pallete.backgroundColor,
+        ),
+        home: const LoginScreen(),
       ),
-      home: const LoginScreen(),
     );
   }
 }
